@@ -1,31 +1,36 @@
 /**
  * @desc 加载vconsole调试器
  */
-const initVconsole = () => {
-    return new Promise((resolve, reject) => {
-        const scriptDom = document.createElement("script")
-        scriptDom.src = "https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/3.0.0/vconsole.min.js"
-        document.body.insertBefore(scriptDom, document.querySelector("#app"))
-        scriptDom.onload = () => {
-            /* eslint-disable */
-            new VConsole()
-            /* eslint-disable */
-            resolve()
-        }
-        scriptDom.onerror = () => {
-            reject();
-        }
-    })
+// const initVconsole = () => {
+//     return new Promise((resolve, reject) => {
+//         const scriptDom = document.createElement("script")
+//         scriptDom.src = "https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/3.0.0/vconsole.min.js"
+//         document.body.insertBefore(scriptDom, document.querySelector("#app"))
+//         scriptDom.onload = () => {
+//             /* eslint-disable */
+//             new VConsole()
+//             /* eslint-disable */
+//             resolve()
+//         }
+//         scriptDom.onerror = () => {
+//             reject();
+//         }
+//     })
 
-}
+// }
 
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 //rem适配
-// import './utils/rem';
+import '@/utils/rem';
 Vue.config.productionTip = false;
+
+//插件
+import plugins from "@/utils/plugins";
+import { initVconsole } from '@/utils/common';
+Vue.use(plugins);
 
 if (process.env.VUE_APP_ENV === "production") {//线上生产版本每次打印最后一次提交的时间
 	console.log("lastModify:" + process.env.VUE_APP_LASTMODIFY);

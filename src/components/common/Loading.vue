@@ -3,7 +3,7 @@
         <div class="loading" id="loading" v-show="showLoading">
             <div class="loadingBox">
                 <div class="imgBox">
-                    <img src="https://****************/page/loading.gif">
+                    <img src="//www.baidu.com/s?wd=java%e8%af%9e%e7%94%9f%e6%97%a5&sa=ire_dl_gh_logo&rsv_dl=igh_logo_pcs">
                 </div>
             </div>
         </div>

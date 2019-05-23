@@ -45,7 +45,7 @@ export default async (url = "", params = {}, options = {}) => {
         console.log("入参: " + JSON.stringify(params));
     }
     if (defaultOptions.loading) {
-        // Vue.prototype.$loading.show();
+        Vue.prototype.$loading.show();
     }
 
     let response = await axios({
@@ -59,12 +59,12 @@ export default async (url = "", params = {}, options = {}) => {
         dataType: "json"
     }).catch(err => {
         if (defaultOptions.loading) {
-            // Vue.prototype.$loading.hide();
+            Vue.prototype.$loading.hide();
         }
         if (defaultOptions.ignoreError) return;
         console.log(err.status)
         if (err.message.indexOf("Network Error") !== -1) {
-            // Vue.prototype.$toast({ message: "网络异常，请检查网络" });
+            Vue.prototype.$toast({ message: "网络异常，请检查网络" });
         }
         throw Error(err.message);
     });
@@ -75,7 +75,7 @@ export default async (url = "", params = {}, options = {}) => {
     if (response.status == 200) {
         let data = response.data || { retInfo: "系统错误" };
         if (defaultOptions.loading) {
-            // Vue.prototype.$loading.hide();
+            Vue.prototype.$loading.hide();
         }
         if (defaultOptions.ignoreError) return data;
         if (data.retCode === 'SUCCESS') {
@@ -86,7 +86,7 @@ export default async (url = "", params = {}, options = {}) => {
         }
     } else {
         if (defaultOptions.ignoreError) return response.status;
-        // Vue.prototype.$toast({ message: response.status });
+        Vue.prototype.$toast({ message: response.status });
         throw Error(response.status);
     }
 }
